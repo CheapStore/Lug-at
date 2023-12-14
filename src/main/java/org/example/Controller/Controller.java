@@ -8,6 +8,7 @@ import org.example.utils.ScannerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Random;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -46,21 +47,42 @@ public class Controller {
             switch (i){
                 case 1-> AddMainu();
                 case 2-> ShowWord();
-                case 3->{}
+                case 3-> test();
                 case 4->{}
                 case 5-> search();
-                case 6->{}
-                default -> {
-                    System.out.println("Wrong!!!");
-                }
+                case 6->delete();
+                default -> System.out.println("Wrong!!!");
                 }
             }
 
         }
 
+    private void test() {
+        int i = scannerUtils.nextInt("1]Eng\n2]Uzb");
+        if (i==1){
+            UzTest();
+        }if (i==2){
+           Engtest();
+        }
+    }
+    private void UzTest(){
+       wordservice.test_uz();
+    }
+
+
+    private void Engtest(){
+        wordservice.test_eng();
+    }
+
+    private void delete() {
+        String id = scannerUtils.nextLine("Enter delete id :");
+        wordservice.delete(id);
+    }
+
     private void search() {
         String searchName = scannerUtils.nextLine("Enter word name (uz/eng) :");
-        wordservice.search(searchName);
+        boolean search = wordservice.search(searchName);
+        System.out.println(search);
     }
 
     private void ShowWord() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class Wordservice {
@@ -27,7 +28,42 @@ public class Wordservice {
         return wordDTOS;
     }
 
-    public void search(String searchName) {
-        wordrepository.searching(searchName);
+    public boolean search(String searchName) {
+        List<WordDTO> searching = wordrepository.searching(searchName);
+        for (WordDTO wordDTO : searching) {
+            if (wordDTO!=null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void delete(String id) {
+        boolean deleteid = wordrepository.deleteid(id);
+        if (deleteid){
+            System.out.println("Sacsec 👌");
+        }else {
+            System.out.println("No delete 🤦‍♂️");
+        }
+    }
+
+
+
+    public void showtest() {
+    }
+
+    public void test_uz() {
+        String savol="";
+        List<WordDTO> wordDTOS = wordrepository.showWord();
+        Random random=new Random();
+        int num = 0;
+        for (int i=0;i<4;i++){
+            num=random.nextInt(0, 4);
+
+        }
+    }
+
+    public void test_eng() {
+
     }
 }

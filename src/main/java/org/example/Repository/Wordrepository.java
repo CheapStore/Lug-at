@@ -28,15 +28,25 @@ public class Wordrepository {
         return query;
     }
 
-    public void searching(String searchName) {
+    public List<WordDTO> searching(String searchName) {
 
-        String sql = "select * from dictionery where uz_name='%s' or eng_name='%s'";
-        sql=String.format(sql,searchName,searchName);
-        int update = jdbcTemplate.update(sql, new BeanPropertyRowMapper<WordDTO>());
-        System.out.println(">>>"+update);
-
+        String sql = "select * from dictionery where uz_name like ? or eng_name like ?";
+        List<WordDTO> query = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WordDTO.class), searchName, searchName);
+        return query;
 
 
 
+    }
+
+    public boolean deleteid(String word_id) {
+        String sql="DELETE FROM dictionery  WHERE id="+word_id;
+        int update = jdbcTemplate.update(sql);
+        return update!=0;
+    }
+
+
+    public void searchId(int  searchId) {
+        String sql="select uz_name from dictionery where id="+searchId;
+        jdbcTemplate.execute(sql);
     }
 }
