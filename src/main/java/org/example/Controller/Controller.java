@@ -48,7 +48,7 @@ public class Controller {
                 case 1-> AddMainu();
                 case 2-> ShowWord();
                 case 3-> test();
-                case 4->{}
+                case 4-> translete();
                 case 5-> search();
                 case 6->delete();
                 default -> System.out.println("Wrong!!!");
@@ -57,8 +57,12 @@ public class Controller {
 
         }
 
+    private void translete() {
+        wordservice.translete();
+    }
+
     private void test() {
-        int i = scannerUtils.nextInt("1]Eng\n2]Uzb");
+        int i = scannerUtils.nextInt("1]Uz\n2]Eng\nEnter :");
         if (i==1){
             UzTest();
         }if (i==2){
@@ -66,11 +70,11 @@ public class Controller {
         }
     }
     private void UzTest(){
-       wordservice.test_uz();
+
+        wordservice.test_uz();
     }
-
-
     private void Engtest(){
+
         wordservice.test_eng();
     }
 

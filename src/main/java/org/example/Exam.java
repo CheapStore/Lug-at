@@ -33,4 +33,6 @@ public class Exam {
 // 5. Searching
 //      Enter word (including both)
 //
+// 6.Delete
+//
 }

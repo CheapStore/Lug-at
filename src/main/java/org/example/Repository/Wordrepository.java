@@ -45,8 +45,15 @@ public class Wordrepository {
     }
 
 
-    public void searchId(int  searchId) {
-        String sql="select uz_name from dictionery where id="+searchId;
-        jdbcTemplate.execute(sql);
+    public List<WordDTO> searchIdUz(int  searchId) {
+        String sql="select * from dictionery where id="+searchId;
+        List<WordDTO> query = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WordDTO.class));
+        return query;
     }
+    public List<WordDTO> searchIdEng(int  searchId) {
+        String sql="select eng_name from dictionery where id="+searchId;
+        List<WordDTO> query = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(WordDTO.class));
+        return query;
+    }
+
 }
